@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'BooksCart';
+  showBooks = true;
+
+  toogleBooks() {
+    this.showBooks = !this.showBooks;
+  }
 }
