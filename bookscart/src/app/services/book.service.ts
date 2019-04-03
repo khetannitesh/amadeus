@@ -9,24 +9,28 @@ export class BookService {
   constructor() {
     this.books = [
       {
+        id: 1,
         title: 'The Alchemist',
         author: 'Paulo Cohelo',
         price: 23,
         rating: 4
       },
       {
+        id: 2,
         title: 'Five point someone',
         author: 'Chetan Bhagat',
         price: 13,
         rating: 1
       },
       {
+        id: 3,
         title: 'The monk who sold his ferrari',
         author: 'Robin Sharma',
         price: 25,
         rating: 3
       },
       {
+        id: 4,
         title: 'Four hour work week',
         author: 'Tim Ferris',
         price: 27,
@@ -37,6 +41,10 @@ export class BookService {
 
   getBooks() {
     return this.books;
+  }
+
+  getBookById(id: number) {
+    return this.books.find(book => book.id == id);
   }
 
   rateUp(book: Book) {

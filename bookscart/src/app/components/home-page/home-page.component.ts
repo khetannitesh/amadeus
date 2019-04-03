@@ -27,14 +27,6 @@ export class HomePageComponent implements OnInit {
     this.bookService.rateDown(book);
   }
 
-  addBook(title, author, price, rating) {
-    let newBook : Book = {
-      title: title.value,
-      author: author.value,
-      price: +price.value,
-      rating: +rating.value
-    };
-    this.bookService.addBook(newBook);
-  }
+
 
 }
