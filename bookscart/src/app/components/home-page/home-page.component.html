@@ -4,16 +4,13 @@
 </select>
 
 {{today | date:'dd**MM**yyyy'}}
-<div 
-  class="book" 
-  *ngFor="let book of books"
-  [hidden]="book.rating==1 || (selectedAuthor !== 'ALL' && book.author !== selectedAuthor)"
-  [class.high]="book.rating == 5" 
->
-  <a routerLink="/book/{{book.id}}" class="title">{{book.title | titlecase |slice:1}}</a>
-  <div class="author" [highlight]="color">{{book.author | lastNameFirst:'|'}}</div>
-  <div>{{book.price | currency:'INR'}}</div>
-  <div>{{book.rating | stars:'@'}}</div>
-  <button (click)="rateUp(book)">&uarr;</button>
-  <button (click)="rateDown(book)">&darr;</button>
+
+<div *ngFor="let b of books">
+  <app-book-item 
+    [book]="b"
+    [selectedAuthor]="selectedAuthor"
+    (rateUpBtnClick)="rateUp($event)"
+    (rateDownBtnClick)="rateDown($event)"
+  >
+  </app-book-item>
 </div>

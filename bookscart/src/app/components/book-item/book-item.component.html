@@ -1,0 +1,15 @@
+<div 
+  class="book" 
+  [hidden]="book.rating==1 || (selectedAuthor !== 'ALL' && book.author !== selectedAuthor) || !selectedAuthor"
+  [class.high]="book.rating == 5" 
+>
+  <a *ngIf="!showTitleAsText" routerLink="/book/{{book.id}}" class="title">{{book.title | titlecase }}</a>
+  <div *ngIf="showTitleAsText" class="title">{{book.title | titlecase}}</div>
+  <div class="author" [highlight]="color">{{book.author | lastNameFirst:'|'}}</div>
+  <div>{{book.price | currency:'INR'}}</div>
+  <div>{{book.rating | stars:'@'}}</div>
+  <div [hidden]="hideBtns">
+    <button (click)="onRateUpClick(book)">&uarr;</button>
+    <button (click)="onRateDownClick(book)">&darr;</button>
+  </div>
+</div>

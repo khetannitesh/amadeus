@@ -1,2 +1,7 @@
-<h3>{{book?.title}}</h3>
-<h5><i>{{book?.author}}</i></h5>
+<app-book-item 
+    [book]="book"
+    selectedAuthor="ALL"
+    [hideBtns]="true"
+    [showTitleAsText]="true"
+>
+</app-book-item>

@@ -12,6 +12,7 @@ import { BookDetailsPageComponent } from './components/book-details-page/book-de
 import { HighlightDirective } from './directives/highlight.directive';
 import { StarsPipe } from './pipes/stars.pipe';
 import { LastNameFirstPipe } from './pipes/last-name-first.pipe';
+import { BookItemComponent } from './components/book-item/book-item.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LastNameFirstPipe } from './pipes/last-name-first.pipe';
     BookDetailsPageComponent,
     HighlightDirective,
     StarsPipe,
-    LastNameFirstPipe
+    LastNameFirstPipe,
+    BookItemComponent
   ],
   imports: [
     BrowserModule,
