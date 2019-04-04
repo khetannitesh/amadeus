@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class BookService {
   private books: Book[];
+  private authors: string[];
+
   constructor() {
     this.books = [
       {
@@ -25,7 +27,7 @@ export class BookService {
       {
         id: 3,
         title: 'The monk who sold his ferrari',
-        author: 'Robin Sharma',
+        author: 'Paulo Cohelo',
         price: 25,
         rating: 3
       },
@@ -37,10 +39,17 @@ export class BookService {
         rating: 5
       }
     ];
+    this.authors = this.books
+      .map(b => b.author)
+      .reduce((res, a) => res.indexOf(a) == -1 ? res.concat(a) : res, []);
   }
 
   getBooks() {
     return this.books;
+  }
+
+  getAuthors() {
+    return this.authors;
   }
 
   getBookById(id: number) {
@@ -59,6 +68,7 @@ export class BookService {
 
   addBook(book: Book) {
     this.books.unshift(book);
+    this.authors.indexOf(book.author) === -1 && this.authors.push(book.author);
   }
 
 }

@@ -18,7 +18,7 @@ export class BookDetailsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
+    let id = +this.route.snapshot.paramMap.get('id');
     this.book = this.bookService.getBookById(id);
   }
 

@@ -9,24 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
   books: Book[];
-  bookService: BookService;
-
-  constructor(bookService: BookService) {
-    this.bookService = bookService;
-    this.books = bookService.getBooks();
+  authors: string[];
+  selectedAuthor: string;
+  
+  constructor(private bookService: BookService) {
   }
 
   ngOnInit() {
+    this.books = this.bookService.getBooks();
+    this.authors = this.bookService.getAuthors();
+    this.selectedAuthor = 'ALL';
   }
 
   rateUp(book: Book) {
     this.bookService.rateUp(book);
   }
 
+  selectAuthor(authorDropdown) {
+    this.selectedAuthor = authorDropdown.value;
+  }
+
   rateDown(book: Book) {
     this.bookService.rateDown(book);
   }
-
-
-
 }

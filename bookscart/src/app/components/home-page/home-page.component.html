@@ -1,12 +1,14 @@
-<div [hidden]="3==3">some text</div>
-
-
+<select (change)="selectAuthor(authorDropdown)" #authorDropdown>
+  <option>ALL</option>
+  <option *ngFor="let author of authors" >{{author}}</option>
+</select>
 
 <div 
   class="book" 
   *ngFor="let book of books"
-  [hidden]="book.rating==1" 
+  [hidden]="book.rating==1"
   [class.high]="book.rating == 5" 
+  [hidden]="selectedAuthor !== 'ALL' && book.author !== selectedAuthor"
 >
   <a routerLink="/book/{{book.id}}" class="title">{{book.title}}</a>
   <div class="author">{{book.author}}</div>
