@@ -33,11 +33,11 @@ export class AddBookPageComponent implements OnInit {
   }
 
   get tags() {
-    return this.bookForm.get('tags');
+    return this.bookForm.get('tags') as FormArray;
   }
 
   addTag() {
-    this.bookForm.get('tags').push(new FormControl(''));
+    this.tags.push(new FormControl(''));
   }
 
   save() {
