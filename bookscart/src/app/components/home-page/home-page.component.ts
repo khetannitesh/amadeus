@@ -11,6 +11,7 @@ export class HomePageComponent implements OnInit {
   books: Book[];
   authors: string[];
   selectedAuthor: string;
+  color: string = 'green';
   
   constructor(private bookService: BookService) {
   }

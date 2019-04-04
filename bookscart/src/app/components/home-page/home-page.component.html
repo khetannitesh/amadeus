@@ -10,7 +10,7 @@
   [class.high]="book.rating == 5" 
 >
   <a routerLink="/book/{{book.id}}" class="title">{{book.title}}</a>
-  <div class="author">{{book.author}}</div>
+  <div class="author" [highlight]="color">{{book.author}}</div>
   <div>{{book.price}}</div>
   <div>{{book.rating}}</div>
   <button (click)="rateUp(book)">&uarr;</button>

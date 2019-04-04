@@ -9,6 +9,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { AddBookPageComponent } from './components/add-book-page/add-book-page.component';
 import { BookDetailsPageComponent } from './components/book-details-page/book-details-page.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BookDetailsPageComponent } from './components/book-details-page/book-de
     AboutPageComponent,
     ContactPageComponent,
     AddBookPageComponent,
-    BookDetailsPageComponent
+    BookDetailsPageComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
