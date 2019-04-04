@@ -1,17 +1,53 @@
-<form [formGroup]="bookForm">
-    <input type="text" formControlName="title" placeholder="Title"/> <br/>
-    <input type="text" formControlName="author" placeholder="Author"/> <br/>
-    <input type="text" formControlName="price" placeholder="Price"/> <br/>
+<form [formGroup]="bookForm" (ngSubmit)="addBook()">
+    <div *ngIf="bookForm.touched || bookForm.dirty">
+        <div *ngIf="bookForm.errors?.badBook" class="error">
+            This book is not allowed.
+        </div>
+    </div>
+    <input type="text" formControlName="title" placeholder="Title" /> <br />
+    <div *ngIf="title.touched || title.dirty">
+        <div *ngIf="title.errors?.required" class="error">
+            Title is required.
+        </div>
+        <div *ngIf="title.errors?.minlength" class="error">
+            Min 4 characters.
+        </div>
+    </div>
+    <input type="text" formControlName="author" placeholder="Author" /> <br />
+    <div *ngIf="author.touched || author.dirty">
+        <div *ngIf="author.errors?.required" class="error">
+            Author is required.
+        </div>
+    </div>
+    <!-- <div formGroupName="authorDetails" style="margin-left: 10px;">
+            <input type="text" formControlName="city" placeholder="City"> <br/>
+            <input type="text" formControlName="numOfBooks" placeholder="Num of Books"> <br/>
+        </div> -->
+    <input type="text" formControlName="price" placeholder="Price" /> <br />
+    <div *ngIf="price.touched || price.dirty">
+        <div *ngIf="price.errors?.numeric" class="error">
+            Only numbers are allowed.
+        </div>
+    </div>
     <select formControlName="rating">
         <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
         <option>5</option>
-    </select>
+    </select><br />
+    <div formArrayName="tags">
+        <input type="text" *ngFor="let tag of tags.controls; let i = index;" [formControlName]="i">
+        <button type="button" (click)="addTag()">+</button>
+    </div>
+    <button type="submit" [disabled]="bookForm.invalid">save</button>
+    <button type="button" (click)="reset()">reset</button>
 </form>
 
-<button (click)="addBook()">save</button>
+{{bookForm.valid}}
+{{title.valid}}
+{{title.errors | json}}
+{{author.valid}}
 
 
 
