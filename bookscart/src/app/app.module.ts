@@ -10,6 +10,8 @@ import { ContactPageComponent } from './components/contact-page/contact-page.com
 import { AddBookPageComponent } from './components/add-book-page/add-book-page.component';
 import { BookDetailsPageComponent } from './components/book-details-page/book-details-page.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { StarsPipe } from './pipes/stars.pipe';
+import { LastNameFirstPipe } from './pipes/last-name-first.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { HighlightDirective } from './directives/highlight.directive';
     ContactPageComponent,
     AddBookPageComponent,
     BookDetailsPageComponent,
-    HighlightDirective
+    HighlightDirective,
+    StarsPipe,
+    LastNameFirstPipe
   ],
   imports: [
     BrowserModule,

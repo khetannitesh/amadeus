@@ -12,6 +12,7 @@ export class HomePageComponent implements OnInit {
   authors: string[];
   selectedAuthor: string;
   color: string = 'green';
+  today: Date;
   
   constructor(private bookService: BookService) {
   }
@@ -20,6 +21,7 @@ export class HomePageComponent implements OnInit {
     this.books = this.bookService.getBooks();
     this.authors = this.bookService.getAuthors();
     this.selectedAuthor = 'ALL';
+    this.today = new Date();
   }
 
   rateUp(book: Book) {
