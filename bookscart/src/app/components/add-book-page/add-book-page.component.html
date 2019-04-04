@@ -1,4 +1,23 @@
-<div>
+<form [formGroup]="bookForm">
+    <input type="text" formControlName="title" placeholder="Title"/> <br/>
+    <input type="text" formControlName="author" placeholder="Author"/> <br/>
+    <input type="text" formControlName="price" placeholder="Price"/> <br/>
+    <select formControlName="rating">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+</form>
+
+<button (click)="addBook()">save</button>
+
+
+
+
+
+<!-- <div>
     <input type="text" placeholder="Title" #title /> <br/>
     <input type="text" placeholder="Auhtor" #author /> <br/>
     <input type="text" placeholder="Price" #price /> <br/>
@@ -10,4 +29,4 @@
         <option>5</option>
     </select> <br/>
     <button (click)="addBook(title, author, price, rating)">Add</button>
-  </div>
+  </div> -->
