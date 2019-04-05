@@ -1,6 +1,7 @@
 import { BookService } from './../../services/book.service';
 import { Book } from './../../models/interfaces';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-page',
@@ -13,19 +14,32 @@ export class HomePageComponent implements OnInit {
   selectedAuthor: string;
   color: string = 'green';
   today: Date;
-  
-  constructor(private bookService: BookService) {
+
+  constructor(
+    private bookService: BookService,
+    private http: HttpClient
+    ) {
   }
 
   ngOnInit() {
-    this.books = this.bookService.getBooks();
-    this.authors = this.bookService.getAuthors();
+    //this.books = this.bookService.getBooks();
+
+    this.bookService
+      .getBooks()
+      .subscribe(res => {
+        this.books = res;
+        this.authors = res
+          .map(b => b.author)
+          .reduce( (res, a) => res.indexOf(a) == -1 ? res.concat(a) : res, []);
+      });
     this.selectedAuthor = 'ALL';
     this.today = new Date();
   }
 
   rateUp(book: Book) {
-    this.bookService.rateUp(book);
+    this.bookService
+      .rateUp(book)
+      .subscribe();
   }
 
   selectAuthor(authorDropdown) {
@@ -33,6 +47,8 @@ export class HomePageComponent implements OnInit {
   }
 
   rateDown(book: Book) {
-    this.bookService.rateDown(book);
+    this.bookService
+      .rateDown(book)
+      .subscribe();
   }
 }

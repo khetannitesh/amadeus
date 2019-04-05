@@ -79,8 +79,9 @@ export class AddBookPageComponent implements OnInit {
     newBook.price = +newBook.price;
     newBook.rating = +newBook.rating;
 
-    this.bookService.addBook(newBook);
-    this.router.navigate(['/home']);
+    this.bookService
+      .addBook(newBook)
+      .subscribe(() => this.router.navigate(['/home']));
   }
 
 }

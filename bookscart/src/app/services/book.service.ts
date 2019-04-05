@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Book } from './../models/interfaces';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,45 +9,18 @@ import { Injectable } from '@angular/core';
 export class BookService {
   private books: Book[];
   private authors: string[];
+  private url : string = 'http://localhost:3000/books/';
 
-  constructor() {
-    this.books = [
-      {
-        id: 1,
-        title: 'The Alchemist',
-        author: 'Paulo Cohelo',
-        price: 23,
-        rating: 4
-      },
-      {
-        id: 2,
-        title: 'Five point someone',
-        author: 'Chetan Bhagat',
-        price: 13,
-        rating: 1
-      },
-      {
-        id: 3,
-        title: 'The monk who sold his ferrari',
-        author: 'Paulo Cohelo',
-        price: 25,
-        rating: 3
-      },
-      {
-        id: 4,
-        title: 'Four hour work week',
-        author: 'Tim Ferris',
-        price: 27,
-        rating: 5
-      }
-    ];
-    this.authors = this.books
-      .map(b => b.author)
-      .reduce((res, a) => res.indexOf(a) == -1 ? res.concat(a) : res, []);
+  constructor(private http: HttpClient) {
+    
   }
 
-  getBooks() {
-    return this.books;
+  getBooks(): Observable<Book[]> {
+    return this.http.get(this.url, {
+      headers: {
+        'token': 'mysampletoken'
+      }
+    });
   }
 
   getAuthors() {
@@ -57,18 +32,19 @@ export class BookService {
   }
 
   rateUp(book: Book) {
-    if(book.rating < 5)
+    if (book.rating < 5)
       book.rating++;
+    return this.http.put(this.url + book.id, book);
   }
 
   rateDown(book: Book) {
-    if(book.rating > 1)
+    if (book.rating > 1)
       book.rating--;
+      return this.http.put(this.url + book.id, book);
   }
 
   addBook(book: Book) {
-    this.books.unshift(book);
-    this.authors.indexOf(book.author) === -1 && this.authors.push(book.author);
+    return this.http.post(this.url, book);
   }
 
 }
