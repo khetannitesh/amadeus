@@ -25,12 +25,10 @@ export class HomePageComponent implements OnInit {
     //this.books = this.bookService.getBooks();
 
     this.bookService
-      .getBooks()
+      .getBooksAndAuthors()
       .subscribe(res => {
-        this.books = res;
-        this.authors = res
-          .map(b => b.author)
-          .reduce( (res, a) => res.indexOf(a) == -1 ? res.concat(a) : res, []);
+        this.books = res.books;
+        this.authors = res.authors;
       });
     this.selectedAuthor = 'ALL';
     this.today = new Date();
