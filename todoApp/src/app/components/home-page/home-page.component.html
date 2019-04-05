@@ -1,5 +1,5 @@
 <app-add-todo></app-add-todo>
 <hr/>
-<app-filter></app-filter>
+<app-filter [currentFilter]="currentFilter"></app-filter>
 <hr/>
-<app-todo-list [todos]="todos"></app-todo-list>
+<app-todo-list [todos]="visibleTodos"></app-todo-list>

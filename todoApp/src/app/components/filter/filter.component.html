@@ -1,3 +1,3 @@
-<p>
-  filter works!
-</p>
+<button (click)="setFilter('ALL')" [class.current]="currentFilter=='ALL'">All</button>
+<button (click)="setFilter('DONE')" [class.current]="currentFilter=='DONE'">Done</button>
+<button (click)="setFilter('PENDING')" [class.current]="currentFilter=='PENDING'">Pending</button>

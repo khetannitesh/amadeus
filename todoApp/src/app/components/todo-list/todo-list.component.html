@@ -1,3 +1,7 @@
 <ul>
-  <li *ngFor="let todo of todos"> {{todo.label}} - {{todo.done}}</li>
+  <li *ngFor="let todo of todos" [class.done]="todo.done">
+     {{todo.label}}
+     <button (click)="toggle(todo)">toggle</button>
+     <button (click)="delete(todo)">delete</button>
+  </li>
 </ul>
